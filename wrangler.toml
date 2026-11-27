@@ -1,0 +1,23 @@
+name = "restaurant-qr-ordering"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "./frontend/dist"
+
+[vars]
+JWT_SECRET = ""
+RAZORPAY_KEY_ID = ""
+RAZORPAY_KEY_SECRET = ""
+
+[[kv_namespaces]]
+binding = "RATE_LIMITER"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "restaurant_db"
+database_id = ""
+
+[[r2_buckets]]
+binding = "R2_BUCKET"
+name = "restaurant-images"
+
+[triggers]
+crons = []
