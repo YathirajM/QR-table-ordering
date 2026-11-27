@@ -1,6 +1,9 @@
 name = "restaurant-qr-ordering"
 compatibility_date = "2024-01-01"
-pages_build_output_dir = "./frontend/dist"
+main = "backend/src/server.ts"
+
+[assets]
+directory = "./frontend/dist"
 
 [vars]
 JWT_SECRET = ""
