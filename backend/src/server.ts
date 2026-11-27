@@ -1,6 +1,5 @@
 import { Hono } from 'hono'
 import { jwt } from 'hono/jwt'
-import { serveStatic } from 'hono/cf-pages'
 import { z } from 'zod'
 import { randomUUID } from 'crypto'
 
@@ -404,9 +403,10 @@ function getStatusProgress(status: string): number {
 }
 
 // Pages fallback - serve frontend
-app.use('*', serveStatic({
-  root: './frontend/dist',
-  rewrite: (path) => path
-}))
+// app.use('*', serveStatic({
+//   root: './frontend/dist',
+//   rewrite: (path) => path
+// }))
+
 
 export default app

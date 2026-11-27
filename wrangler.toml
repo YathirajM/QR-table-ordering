@@ -1,4 +1,4 @@
-name = "restaurant-qr-ordering"
+name = "qr-table-ordering"
 compatibility_date = "2024-01-01"
 main = "backend/src/server.ts"
 
@@ -20,7 +20,7 @@ database_id = ""
 
 [[r2_buckets]]
 binding = "R2_BUCKET"
-name = "restaurant-images"
+bucket_name = "restaurant-images"
 
 [triggers]
 crons = []
