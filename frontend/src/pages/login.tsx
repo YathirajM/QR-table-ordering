@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Utensils, ChefHat, Lock, Mail, Chrome, Facebook } from 'lucide-react'
+import { Utensils, Lock, Mail } from 'lucide-react'
 import { apiPost } from '../lib/api'
 
 export default function LoginPage() {
@@ -99,24 +99,6 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200" />
-              </div>
-              <div className="relative text-center text-sm text-slate-500">
-                Or continue with
-              </div>
-            </div>
-
-            <button className="w-full mt-4 flex items-center justify-center gap-3 py-3 border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors">
-              <Chrome className="h-5 w-5" />
-              <span>Sign in with Google</span>
-            </button>
-
-            <button className="w-full mt-2 flex items-center justify-center gap-3 py-3 border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors">
-              <Facebook className="h-5 w-5" />
-              <span>Sign in with Facebook</span>
-            </button>
           </div>
 
           <p className="mt-6 text-center text-sm text-slate-500">

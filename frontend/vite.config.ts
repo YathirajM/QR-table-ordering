@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
 export default defineConfig({
+  root: resolve(__dirname, '.'),
   plugins: [react()],
   resolve: {
     alias: {
@@ -18,14 +19,11 @@ export default defineConfig({
     strictPort: true,
   },
   build: {
-    outDir: 'dist',
+    outDir: resolve(__dirname, 'dist'),
     sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['lucide-react', 'framer-motion'],
-        },
+        manualChunks: undefined,
       },
     },
   },
