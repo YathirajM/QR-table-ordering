@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "wrangler dev",
-    "build": "vite build --config frontend/vite.config.ts",
+    "build": "cd frontend && vite build",
     "deploy": "wrangler deploy",
     "db:migrate": "wrangler d1 migrate restaurant-db",
     "db:seed": "wrangler d1 execute restaurant-db --local",

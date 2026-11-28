@@ -4,23 +4,21 @@ main = "backend/src/server.ts"
 
 [assets]
 directory = "./frontend/dist"
+not_found_handling = "single-page-application"
 
-[vars]
-JWT_SECRET = ""
-RAZORPAY_KEY_ID = ""
-RAZORPAY_KEY_SECRET = ""
-
-[[kv_namespaces]]
-binding = "RATE_LIMITER"
+# KV namespace removed - not currently used in the codebase
+# [[kv_namespaces]]
+# binding = "RATE_LIMITER"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "restaurant_db"
-database_id = ""
+database_id = "902f9fbb-6ca7-4b76-aa74-6a490be7dcfa"
 
-[[r2_buckets]]
-binding = "R2_BUCKET"
-bucket_name = "restaurant-images"
+# R2 bucket - add when enabled in Cloudflare dashboard
+# [[r2_buckets]]
+# binding = "R2_BUCKET"
+# bucket_name = "restaurant-images"
 
 [triggers]
 crons = []

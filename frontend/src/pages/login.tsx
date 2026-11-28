@@ -14,7 +14,7 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
-      const response = await apiPost('/auth/login', { email, password })
+      const response = await apiPost('/api/auth/login', { email, password })
       const { token } = response as any
 
       localStorage.setItem('token', token)

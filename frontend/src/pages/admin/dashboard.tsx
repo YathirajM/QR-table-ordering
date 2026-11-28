@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { TrendingUp, ShoppingCart, DollarSign, Clock, Users, Pizza } from 'lucide-react'
+import { ShoppingCart, DollarSign, Clock, Image } from 'lucide-react'
 import { apiFetch } from '../../lib/api'
 import type { Order } from '../../lib/types'
 
@@ -8,6 +9,7 @@ export default function AdminDashboard() {
   const [recentOrders, setRecentOrders] = useState<Order[]>([])
   const [popularItems, setPopularItems] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState<any>(null)
 
   useEffect(() => {
     loadDashboard()
@@ -16,16 +18,19 @@ export default function AdminDashboard() {
   async function loadDashboard() {
     setLoading(true)
     try {
-      const data = await apiFetch('/admin/dashboard')
-      setStats(data.stats || {})
-      setRecentOrders(data.recentOrders || [])
-      setPopularItems(data.popularItems || [])
+      const data = await apiFetch('/api/admin/dashboard')
+      setStats((data as any).stats || {})
+      setRecentOrders((data as any).recentOrders || [])
+      setPopularItems((data as any).popularItems || [])
     } catch (error) {
       console.error('Failed to load dashboard:', error)
     } finally {
       setLoading(false)
     }
   }
+
+  // Check if user is admin
+  const isAdmin = user?.role === 'ADMIN' || user?.role === 'MANAGER'
 
   const statCards = [
     {
@@ -51,7 +56,7 @@ export default function AdminDashboard() {
     },
     {
       title: 'Avg Order Value',
-      value: `₹${(stats.avg_order_value || 0).toFixed(2)}`,
+      value: isAdmin ? `₹${(stats.avg_order_value || 0).toFixed(2)}` : '—',
       icon: TrendingUp,
       color: 'text-blue-600',
       bg: 'bg-blue-50'
@@ -60,9 +65,17 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
-        <p className="text-slate-500 mt-1">Overview of your restaurant performance</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
+          <p className="text-slate-500 mt-1">Overview of your restaurant performance</p>
+        </div>
+        {isAdmin && (
+          <div className="flex items-center gap-2">
+            <Image className="h-5 w-5" name="Users" />
+            <span className="text-sm text-slate-500">Admin</span>
+          </div>
+        )}
       </div>
 
       {loading ? (
@@ -171,5 +184,3 @@ export default function AdminDashboard() {
     </div>
   )
 }
-
-import { useState, useEffect } from 'react'
